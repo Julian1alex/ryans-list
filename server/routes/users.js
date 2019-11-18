@@ -1,12 +1,30 @@
 const router = require("express").Router()
+const db = require('../db')
 
-const users = [
-  { id: 1, name: "Mike" },
-  { id: 2, name: "Ryan" }
-]
+router.get("/catnames", (req, res, next) => {
+  ///This is the query we are running///
+  const sql = 
+  `SELECT name
+  FROMnCatagories
+  Where parent_id is NULL` 
 
-router.get("/", (req, res, next) => {
-  res.json(users)
+  db.query(sql, (results) => {
+    console.log(results)
+
+  })
+})
+
+router.get("/subcats", (req, res, next) => {
+    ///This is the query we are running///
+  const sql = 
+  `SELECT name
+  FROM Catagories
+  Where parent_id`
+
+  db.query(sql, (results) => {
+    console.log(results)
+
+  })
 })
 
 module.exports = router
